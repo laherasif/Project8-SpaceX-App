@@ -2,7 +2,7 @@ import React from 'react'
 // import ReactLoading from 'react-loading'
 import './loading.css'
 import Skeleton from "react-loading-skeleton";
-import { useLaunchesQuery } from '../../generated/graphql'
+
 export default function SingleLoading() {
 
     return (

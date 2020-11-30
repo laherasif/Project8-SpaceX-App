@@ -1,11 +1,8 @@
-import React,{ useState} from 'react'
-// import ReactLoading from 'react-loading'
+import React from 'react'
 import './loading.css'
 import Skeleton from "react-loading-skeleton";
-import { useLaunchesQuery } from '../../generated/graphql'
 export default function Loading() {
-    const [result, setresult] = useState([])
-    const {data, loading, error } = useLaunchesQuery()
+   
            
     return (
         <section>
