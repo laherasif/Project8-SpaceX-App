@@ -6,8 +6,8 @@ import Loading from '../loader/loading'
 import useLocalStorage from '../localStorage'
 export default function  LaunchFunction(){
     const {data, loading, error } = useLaunchesQuery()
-      // console.log("data lunch " , data)
-      const [DarkTheme ,setDarkTheme] = useLocalStorage('', true)
+    const [DarkTheme ,setDarkTheme] = useLocalStorage('', true)
+    console.log("data lunch " , DarkTheme)
 
       useEffect(()=>{
             if(data ? data : null){
