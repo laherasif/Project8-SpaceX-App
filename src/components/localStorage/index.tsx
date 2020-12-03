@@ -42,7 +42,7 @@ function useLocalStorage<T>(key: string, initialValue: T) {
   }
   useEffect(() => {
     setStoredValue(readValue())
-  }, [])
+  },[readValue])
   useEffect(() => {
     const handleStorageChange = () => {
       setStoredValue(readValue())
@@ -55,7 +55,7 @@ function useLocalStorage<T>(key: string, initialValue: T) {
       window.removeEventListener('storage', handleStorageChange)
       window.removeEventListener('local-storage', handleStorageChange)
     }
-  }, [])
+  })
   return [storedValue, setValue]
 }
 export default useLocalStorage
