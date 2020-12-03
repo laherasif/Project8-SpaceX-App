@@ -25,7 +25,7 @@ const LaunchDetFunction = () => {
      {
         return item
      }
-    //  return item 
+     return item 
     })
   
 
