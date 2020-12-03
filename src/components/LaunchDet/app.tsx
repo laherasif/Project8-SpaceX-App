@@ -1,8 +1,10 @@
 import React from 'react'
 import { useLaunhDetailQuery } from '../../generated/graphql'
 import LaunchDet from './launchdet'
+import LaunchDetLocal from './launchesLocalData'
 import SingleLoading from '../loader/singleLoader'
 import { useParams } from 'react-router-dom'
+import useLocalStorage from '../localStorage'
 
 interface ParamTypes {
     id: string
@@ -11,23 +13,42 @@ interface ParamTypes {
 // router 
 
 const LaunchDetFunction = () => {
-  // console.log("loation" , window.location)
-  // console.log("loation" , useParams())
+  const [DarkTheme ] = useLocalStorage('', true)
+   console.log("data from local" , DarkTheme);
+   
   const { id } = useParams<ParamTypes>()
     const { data, loading, error  } = useLaunhDetailQuery({variables : { id : id }})
-    console.log("data lunches id  " , data)
+    console.log("data lunches id  " , id)
+     
+    let FilterData = DarkTheme.launches.filter((item:any)=>{
+     if(item.flight_number === Number(id) )
+     {
+        return item
+     }
+    //  return item 
+    })
+  
+
+    console.log("data" , FilterData)
+   
+    let obj = Object.assign({} , ...FilterData)
+   
+    
+
+    
     if (loading){
         return <SingleLoading />
     }
     if(error || !data){
-        console.log(error);
-        return <div>error</div>
+      return (
+        <LaunchDetLocal data={obj} />
+      )
     }
+ 
     return (
         
     <LaunchDet data={data} />
     )
-}
-
+    }
 
 export default LaunchDetFunction

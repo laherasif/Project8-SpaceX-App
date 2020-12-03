@@ -780,6 +780,7 @@ export const LaunchesDocument = gql`
   launches {
     flight_number
     mission_name
+    details
     upcoming
     launch_year
     launch_date_local
@@ -790,6 +791,9 @@ export const LaunchesDocument = gql`
     launch_site {
       site_name
     }
+    rocket{
+      rocket_name
+  }
   }
 }
     `;

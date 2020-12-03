@@ -11,7 +11,6 @@ interface Props {
 
 const Launch: React.FC<Props> = ({ data }) => {
    
-      console.log("stete" ,data.launches?.length )
     const displayData = data.launches?.map((launch, index) => {
         return (
 

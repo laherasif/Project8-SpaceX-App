@@ -1,42 +1,42 @@
 import React from 'react'
-import { LaunhDetailQuery } from '../../generated/graphql'
+import { lunchprops } from '../Types/types'
 import './stlyes.css'
 import { Link } from 'react-router-dom'
 interface Props {
-    data: LaunhDetailQuery
+    data: lunchprops
 }
 
-const LaunchDet: React.FC<Props> = ({ data }) => {
+const LaunchDetLocal: React.FC<Props> = ({ data }) => {
              
     return (
         <div className='item-margin'>
             <div className='box-item'>
                 <div>
                     <div className='item-mission'>
-                        <span className='sp-one'>{data.launch?.flight_number}. </span>
-                        <span className='sp-two'>Mission: {data.launch?.mission_name}</span>
+                        <span className='sp-one'>{data.flight_number}. </span>
+                        <span className='sp-two'>Mission: {data.mission_name}</span>
                     </div>
                     <div className='item-site'>
-                        <span className='sp-one'>Launch date: </span><span className='sp-3'>{data.launch?.launch_date_local}</span>
-                    </div>
-                    <hr /> 
-                    <div className='item-site'>
-                        <span className='sp-one'>status: <span className={data.launch?.launch_success ? 'true' : 'false'}>{data.launch?.launch_success ? 'sucessful' : 'failed'}</span></span>
+                        <span className='sp-one'>Launch date: </span><span className='sp-3'>{data.launch_date_local}</span>
                     </div>
                     <hr /> 
                     <div className='item-site'>
-                        <span className='sp-one'>Rocket: </span><span className='sp-3'>{data.launch?.rocket?.rocket_name}</span>
+                        <span className='sp-one'>status: <span className={data.launch_success ? 'true' : 'false'}>{data.launch_success ? 'sucessful' : 'failed'}</span></span>
+                    </div>
+                    <hr /> 
+                    <div className='item-site'>
+                        <span className='sp-one'>Rocket: </span><span className='sp-3'>{data.rocket?.rocket_name}</span>
                     </div>
                     <hr /> 
                 </div>
                 <div className='item-p'>
-                    <p>{data.launch?.details}</p>
+                    <p>{data.details}</p>
                 </div>
                 <hr />
                 {
-                    !!data.launch?.links && !!data.launch.links.flickr_images && (
+                    !!data.links && !!data.links.flickr_images && (
                         <div className='img-item'>
-                            {data.launch.links.flickr_images.map((image, i) =>
+                            {data.links.flickr_images.map((image, i) =>
                                 image ? <div key={i}><img src={image}  height='300px' width="300px" alt={i.toString()} /></div> : null
                             )}
                         </div>
@@ -44,7 +44,7 @@ const LaunchDet: React.FC<Props> = ({ data }) => {
                 }
                 <hr />
                 <div className='launch-btu'>
-                        <Link to='/launches'>
+                        <Link to='/'>
                             <button className='hvr-bounce-to-bottom launch-btn btn'>
                                 <span>Back</span>
                             </button>
@@ -54,4 +54,4 @@ const LaunchDet: React.FC<Props> = ({ data }) => {
         </div>
     )
 }
-export default LaunchDet;
+export default LaunchDetLocal;

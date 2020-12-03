@@ -1,24 +1,43 @@
-import React from  'react'
+import React, { useEffect } from  'react'
 import { useLaunchesQuery } from '../../generated/graphql'
 
 import Launch from './launch'
 import Loading from '../loader/loading'
-
+import useLocalStorage from '../localStorage'
 export default function  LaunchFunction(){
     const {data, loading, error } = useLaunchesQuery()
       // console.log("data lunch " , data)
+      const [DarkTheme ,setDarkTheme] = useLocalStorage('', true)
 
-  
-      if(loading){
+      useEffect(()=>{
+            if(data ? data : null){
+              setDarkTheme(data)
+            }
+      },[setDarkTheme , data ])
+
+
+   
+      if(loading ){
         return <Loading/>
       }
-    if (error || !data){
-        console.log(error);
-        return <div>error</div>
-    }
 
+    
+      if (error || !data){
+       return (
+         <div>
+           
+           <Launch data={DarkTheme}/>
+         </div>
+       )
+      }
+    
+     
+       else
     return (
-      
+     <div>
     <Launch data={data} />
+   
+      </div>
+   
     )
 }
